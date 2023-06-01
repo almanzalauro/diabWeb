@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+   
+}
+
+<div class="login-box">
+
+    <img class="avatar" src="img/logodia.jpeg" alt="logo de diabecheck" />
+    <h1 class="display-4">Diabecheck</h1>
+    <form>
+        <div class="mb-3">
+            <!--Usuario-->
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+
+        <div class="mb-3">
+            <!--Contraseña-->
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="btn">
+            <button type="submit" value="Log in" class="btn btn-primary">Entrar</button>
+            <button type="submit" class="btn btn-primary" asp-controller="Pacientes" asp-action="Create">Registrarse</button>
+        </div>
+    </form>
+</div>
