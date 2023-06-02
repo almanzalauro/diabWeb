@@ -56,8 +56,9 @@ namespace TuProyecto.Controllers
             }
             else
             {
+
                 // Usuario no válido, mostrar mensaje de error o redirigir a la página de error de inicio de sesión
-                return RedirectToAction("Login", "Auth");
+                return RedirectToAction("Index", "Home");
             }
         }
     }
