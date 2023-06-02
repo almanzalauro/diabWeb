@@ -9,17 +9,18 @@
 
     <img class="avatar" src="img/logodia.jpeg" alt="logo de diabecheck" />
     <h1 class="display-4">Diabecheck</h1>
-    <form>
+    
+    <form method="post" action="/Auth/Login">
         <div class="mb-3">
             <!--Usuario-->
-            <label for="exampleInputEmail1" class="form-label">Usuario</label>
-            <input type="text" class="form-control" placeholder="Correo Electronico" id="correo" aria-describedby="emailHelp">
+            <label for="email" class="form-label">Usuario</label>
+            <input type="text" class="form-control" placeholder="Correo Electronico" id="email" name="email" aria-describedby="emailHelp">
         </div>
 
         <div class="mb-3">
             <!--Contraseña-->
-            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" placeholder="Contraseña" id="contraseña">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" name="contraseña" placeholder="Contraseña" id="password">
         </div>
         <div class="btn">
             <button type="submit" class="btn btn-primary" value="Log in" onclick="validarUsuario()">Entrar</button>
