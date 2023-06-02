@@ -115,9 +115,8 @@ body {
     justify-content:center;
 }
 
-.create-box .form-group{
-    padding-bottom:10px;
-    
+.campo{
+    color:white;
 }
 .campo input {
     background: transparent;
@@ -126,3 +125,7 @@ body {
     border-bottom: 1px solid #fff;
 }
 
+footer .footer-text{
+    color:white;
+    text-align: right;
+}
