@@ -21,32 +21,3 @@ body {
     font-family: 'Sans Serif';
     height: 100vh;
 }
-
-.box h1{
-    text-align:center;
-}
-
-.box a{
-    text-decoration:none;
-    color:white;
-}
-
-.create-box {
-    align-items:center;
-    justify-content:center;
-}
-
-.campo{
-    color:white;
-}
-.campo input {
-    background: transparent;
-    border: none;
-    outline: none;
-    border-bottom: 1px solid #fff;
-}
-
-footer .footer-text{
-    color:white;
-    text-align: right;
-}

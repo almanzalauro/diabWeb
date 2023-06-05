@@ -61,7 +61,7 @@ namespace diabeWeb.Controllers
             {
                 _context.Add(paciente);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index","Inicio");
             }
             return View(paciente);
         }
@@ -158,5 +158,8 @@ namespace diabeWeb.Controllers
         {
           return (_context.Pacientes?.Any(e => e.IdPaciente == id)).GetValueOrDefault();
         }
+
+
+        
     }
 }

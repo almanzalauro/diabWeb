@@ -3,8 +3,9 @@ using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using MySqlConnector;
 using diabeWeb.Models;
+using Microsoft.AspNetCore.Authentication;
 
-namespace TuProyecto.Controllers
+namespace diabeWeb.Controllers
 {
     public class AuthController : Controller
     {
@@ -26,25 +27,25 @@ namespace TuProyecto.Controllers
 
             using (var connection = new MySql.Data.MySqlClient.MySqlConnection(connectionString))
             {
+                //abro la conexion
                 connection.Open();
-
+                //hago una consulta para traer todos los usuarios (email y dni)
                 string query = "SELECT * FROM Pacientes WHERE Email = @Email AND Dni = @Contraseña";
-                using (var command = new MySql.Data.MySqlClient.MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Email", email);
-                    command.Parameters.AddWithValue("@Contraseña", contraseña);
+                //mando la consulta a la base de datos
+                using var command = new MySql.Data.MySqlClient.MySqlCommand(query, connection);
+                
+                command.Parameters.AddWithValue("@Email", email);
+                command.Parameters.AddWithValue("@Contraseña", contraseña);
 
-                    using (var reader = command.ExecuteReader())
+                using var reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    paciente = new Paciente
                     {
-                        if (reader.Read())
-                        {
-                            paciente = new Paciente
-                            {
-                                Email = reader.GetString("Email"),
-                                Dni = reader.GetString("Dni")
-                            };
-                        }
-                    }
+                        Email = reader.GetString("Email"),
+                        Dni = reader.GetString("Dni")
+                    };
                 }
             }
 
@@ -52,14 +53,28 @@ namespace TuProyecto.Controllers
             {
                 // Usuario válido, realizar el proceso de inicio de sesión
                 // Redirigir a la página principal u otra página según tu lógica
-                return RedirectToAction("Index", "Pacientes");
+                return RedirectToAction("PacienteHome", "Home");
             }
             else
             {
 
-                // Usuario no válido, mostrar mensaje de error o redirigir a la página de error de inicio de sesión
+                // Usuario no válido, no se encuentra en la base de datos
+                //redirijo a la pestaña de login
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        public IActionResult Logout()
+        {
+            // Realizar aquí cualquier lógica adicional antes de cerrar sesión, si es necesario
+
+            // Limpiar la información de autenticación del usuario actual
+            HttpContext.SignOutAsync();
+
+            // Redirigir a la página de inicio u otra página según tu lógica
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
 }

@@ -23,6 +23,11 @@ namespace diabeWeb.Controllers
             return View();
         }
 
+        public IActionResult PacienteHome()
+        {
+            return View();
+        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
